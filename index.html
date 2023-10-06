@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fjalla+One&family=Francois+One&display=swap" rel="stylesheet">
+
+  </head>
+  <body id ="body_main">
+
+    <nav class="navbar">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#services">Services</a></li>
+          <button class="btnStyle" id="signUpButton">Sign In</button>
+        </ul>
+      </nav>
+ 
+ <div class="sidebar">
+    <ul>
+        <li>
+            <img src="https://i.pinimg.com/originals/97/31/02/9731022f0be7c965e880505461643850.jpg" alt="My Avatar" class="avatar">
+        </li>
+        <li>  
+        <div class="skillsContainer">
+            <h1 class="introduction_text">Hi, I'm <span class="imgNameFont">Umar Ali</span> </h1>
+        <h1 class="skillsHeading">Skills</h1>
+        <h1 class="skills">React</h1>
+        <h1 class="skills">Bootstrap</h1>
+        <h1 class="skills">.NET</h1>
+        <h1 class="skills">Android</h1>
+        <h1 class="skills">API</h1>
+        </div></li>
+
+    </ul>
+          </div>
+ <div class="mainContentContainer">
+
+ </div>
+  <div id="container"> <!--main div-->
+       
+  <!-- About section -->
+  <section id="about" class="section">
+   
+
+    <h1 class="title">Full-Stack Developer</h1>
+    
+    
+    <h2 class="heading2">About</h2>
+    <p class="paragraph">Dedicated and efficient full stack developer with 6+ years experience in application layers, 
+        presentation layers, and databases. Certified in both F/E and B/E technologies. Spearheaded 
+        successful transition from LAMP stack to MEAN which cut latency by 40% and increased effectiveness 
+        of database administrators by 20%. Seeking to further improve HTML5 and CSS3 skills as the future 
+        full stack developer at Atmospheric Solutions.</p>
+
+  </section>
+
+ 
+   <!-- Experience section -->
+  <section id="experience" class="section">
+    <h2 class="heading2">Work Experience</h2>
+    <ul id="ul">
+      <li >Codeninja - Android Developer (August 2020 - current)</li>
+      <li >Freelauncer - Android Developer (June 2019 - August 2020)</li>
+      <li > Deloitte - Full-Stack Developer - (June 2019 - August 2020)</li>
+      <li >Randstad Technologies - Full-Stack Developer (June 2019 - August 2020)</li>
+
+    </ul>
+    
+  </section>
+  
+ 
+ <!-- Projects section -->
+ <section id="projects" class="section">
+  <div">
+    <h2 class="heading2">Projects</h2>
+
+    <ul id="ul">
+        <li id="li"> <span class="span">Managed IT Services -</span> Using K-Solar app user will be able to monitor their solar panels systems in mobile phone. </li>
+        <li id="li"> <span class="span">Cloud Backup Services -</span> Using this app organization will be able to know their employee’s mood and to improve their productivity at work.</li>
+        <li id="li"> <span class="span">Data Backup and Restoration -</span> Designed to make interaction between Blood Donor Companies and needy persons.</li>
+        <li id="li"> <span class="span">Firewall Services -</span> App designed to provide all information about Qasim Ali Shah to their fans. </li>
+      </ul>
+  </div>
+  
+
+
+</section>
+ 
+  <div id="addForm" class="modal">
+    <div class="modal-content">
+      <h2>Add New Item</h2>
+      <form id="addItemForm">
+        <label for="nameInput">Name:</label>
+        <input type="text" id="nameInput" required>
+
+        <label for="projectNameInput">Project Name:</label>
+        <input type="text" id="projectNameInput" required>
+
+        <label for="companyNameInput">Company Name:</label>
+        <input type="text" id="companyNameInput" required>
+
+        <label for="yearInput">Year:</label>
+        <input type="text" id="yearInput" required>
+
+        <label for="descriptionInput">Description:</label>
+        <textarea id="descriptionInput" rows="4" required></textarea>
+        
+        <button type="submit">Add</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p class="linkedIn"><a  href="https://www.linkedin.com/in/zarafshan-ejaz-59813518b">LinkedIn Profile</a></p>
+
+  </footer>
+</div>
+<!--main div-->
+<script src="protfolio.js"></script>
+
+  </body>
+</html>
