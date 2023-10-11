@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="/validation_form/EditPortfolio.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fjalla+One&family=Francois+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body id="body_main">
+    <nav class="navbar">
+      <ul>
+        <li><a href="/validation_form/index.html">Go Back To Home</a></li>
+      </ul>
+    </nav>
+    <div>
+      <!-- Projects section -->
+      <div>
+        <h2 class="heading2">Projects</h2>
+
+        <ul id="productList" class="list"></ul>
+        <button id="addItemBtn" class="addButton">Add Item</button>
+      </div>
+      <div id="itemModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <div class="item-details">
+            <h2 id="modalTitle"></h2>
+            <div class="item-info">
+              <p class="label">Project Name:</p>
+              <p id="modalProjectName"></p>
+            </div>
+            <div class="item-info">
+              <p class="label">Company Name:</p>
+              <p id="modalCompanyName"></p>
+            </div>
+            <div class="item-info">
+              <p class="label">Year:</p>
+              <p id="modalYear"></p>
+            </div>
+            <div class="item-info">
+              <p class="label">Description:</p>
+              <p id="modalDescription"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/validation_form/EditPortfolio.js"></script>
+  </body>
+</html>
