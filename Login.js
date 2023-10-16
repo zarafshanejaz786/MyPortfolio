@@ -1,5 +1,5 @@
 const registrationForm = document.getElementById("registrationForm");
-registrationForm.addEventListener("submit", async function (event) {
+registrationForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
   const inputName = document.getElementById("name");
@@ -42,17 +42,10 @@ registrationForm.addEventListener("submit", async function (event) {
     return;
   }
 
-  if (!(password.length > 7)) {
+  if (password.length < 8) {
     passwordError.textContent = "The password must have at least 8 characters.";
     addRedBorder(inputPassword);
     return;
   }
-
-  if (name && emailRegex.test(email) && password.length > 7) {
-    nameError.textContent = "";
-    emailError.textContent = "";
-    passwordError.textContent = "";
-    successMessage.textContent = "Logged In successful 🙂";
-    return;
-  }
+  successMessage.textContent = "Logged In successful 🙂";
 });
