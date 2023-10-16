@@ -2,6 +2,11 @@ const addExperienceBtn = document.getElementById("addExperienceBtn");
 const experienceForm = document.getElementById("experienceForm");
 const experienceList = document.getElementById("experienceList");
 const experienceEntryForm = document.getElementById("experienceEntryForm");
+const experienceEntry = document.createElement("li");
+const inputCompanyName = document.getElementById("companyName");
+const inputStartDate = document.getElementById("startDate");
+const inputEndDate = document.getElementById("endDate");
+const inputDescription = document.getElementById("description");
 
 addExperienceBtn.addEventListener("click", () => {
   experienceForm.style.display = "block";
@@ -10,17 +15,17 @@ addExperienceBtn.addEventListener("click", () => {
 experienceEntryForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const companyName = document.getElementById("companyName").value;
-  const startDate = document.getElementById("startDate").value;
-  const endDate = document.getElementById("endDate").value;
-  const description = document.getElementById("description").value;
+  const companyName = inputCompanyName.value;
+  const startDate = inputStartDate.value;
+  const endDate = inputEndDate.value;
+  const description = inputDescription.value;
 
-  const experienceEntry = document.createElement("li");
   experienceEntry.className = "experience-item";
   experienceEntry.innerHTML = `
      
         <h3>${companyName}</h3>
-        <p>${startDate} - ${endDate}</p>
+        <p>From: ${startDate}</p>
+        <p>To: ${endDate}</p>
         <p>${description}</p>
       `;
 
