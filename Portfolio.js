@@ -8,9 +8,8 @@ function loadExperiencesFromLocalStorage() {
     experienceEntry.className = "experience-item";
     experienceEntry.innerHTML = `
               
-              <h3>${experience.name}</h3>
-              <p>${experience.projectName} - ${experience.companyName}</p>
-              <p>${experience.year}</p>
+              <h3>${experience.companyName}</h3>
+              <p>${experience.startDate} - ${experience.endDate}</p>
               <p>${experience.description}</p>
             `;
 
