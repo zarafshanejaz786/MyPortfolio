@@ -14,19 +14,13 @@ addExperienceBtn.addEventListener("click", () => {
 
 experienceEntryForm.addEventListener("submit", (event) => {
   event.preventDefault();
-
-  const companyName = inputCompanyName.value;
-  const startDate = inputStartDate.value;
-  const endDate = inputEndDate.value;
-  const description = inputDescription.value;
-
   experienceEntry.className = "experience-item";
   experienceEntry.innerHTML = `
      
-        <h3>${companyName}</h3>
-        <p>From: ${startDate}</p>
-        <p>To: ${endDate}</p>
-        <p>${description}</p>
+        <h3>${inputCompanyName.value}</h3>
+        <p>From: ${inputStartDate.value}</p>
+        <p>To: ${inputEndDate.value}</p>
+        <p>${inputDescription.value}</p>
       `;
 
   experienceList.appendChild(experienceEntry);
@@ -35,8 +29,8 @@ experienceEntryForm.addEventListener("submit", (event) => {
 });
 
 function clearFormInputs() {
-  document.getElementById("companyName").value = "";
-  document.getElementById("startDate").value = "";
-  document.getElementById("endDate").value = "";
-  document.getElementById("description").value = "";
+  inputCompanyName.value = "";
+  inputStartDate.value = "";
+  inputEndDate.value = "";
+  inputDescription.value = "";
 }
