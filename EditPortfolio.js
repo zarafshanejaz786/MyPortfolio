@@ -2,6 +2,11 @@ const addExperienceBtn = document.getElementById("addExperienceBtn");
 const experienceForm = document.getElementById("experienceForm");
 const experienceList = document.getElementById("experienceList");
 const experienceEntryForm = document.getElementById("experienceEntryForm");
+const experienceEntry = document.createElement("li");
+const inputCompanyName = document.getElementById("companyName");
+const inputStartDate = document.getElementById("startDate");
+const inputEndDate = document.getElementById("endDate");
+const inputDescription = document.getElementById("description");
 
 addExperienceBtn.addEventListener("click", () => {
   experienceForm.style.display = "block";
@@ -9,23 +14,14 @@ addExperienceBtn.addEventListener("click", () => {
 
 experienceEntryForm.addEventListener("submit", (event) => {
   event.preventDefault();
-
-  const companyName = document.getElementById("companyName").value;
-  const startDate = document.getElementById("startDate").value;
-  const endDate = document.getElementById("endDate").value;
-  const description = document.getElementById("description").value;
-
-  const experienceEntry = document.createElement("li");
   experienceEntry.className = "experience-item";
   experienceEntry.innerHTML = `
-    <div class="buttons">
-      <button class="editBtn">Edit</button>
-      <button class="deleteBtn">Delete</button>
-    </div>
-    <h3>${companyName}</h3>
-    <p>${startDate} - ${endDate}</p>
-    <p>${description}</p>
-  `;
+     
+        <h3>${inputCompanyName.value}</h3>
+        <p>From: ${inputStartDate.value}</p>
+        <p>To: ${inputEndDate.value}</p>
+        <p>${inputDescription.value}</p>
+      `;
 
   experienceList.appendChild(experienceEntry);
   clearFormInputs();
@@ -40,10 +36,10 @@ experienceEntryForm.addEventListener("submit", (event) => {
 });
 
 function clearFormInputs() {
-  document.getElementById("companyName").value = "";
-  document.getElementById("startDate").value = "";
-  document.getElementById("endDate").value = "";
-  document.getElementById("description").value = "";
+  inputCompanyName.value = "";
+  inputStartDate.value = "";
+  inputEndDate.value = "";
+  inputDescription.value = "";
 }
 
 function updateLocalStorage(newExperience) {
