@@ -15,7 +15,7 @@ addExperienceBtn.addEventListener("click", () => {
 experienceEntryForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const companyName = inputCompanyName.value;
+  const companyNamee = inputCompanyName.value;
   const startDate = inputStartDate.value;
   const endDate = inputEndDate.value;
   const description = inputDescription.value;
@@ -23,7 +23,7 @@ experienceEntryForm.addEventListener("submit", (event) => {
   experienceEntry.className = "experience-item";
   experienceEntry.innerHTML = `
      
-        <h3>${companyName}</h3>
+        <h3>${companyNamee}</h3>
         <p>From: ${startDate}</p>
         <p>To: ${endDate}</p>
         <p>${description}</p>
