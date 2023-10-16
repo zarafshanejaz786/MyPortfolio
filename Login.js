@@ -15,6 +15,7 @@ registrationForm.addEventListener("submit", function (event) {
   const email = inputEmail.value;
   const password = inputPassword.value;
 
+  var isValid = false;
   emailError.textContent = "";
   nameError.textContent = "";
   passwordError.textContent = "";
@@ -32,20 +33,26 @@ registrationForm.addEventListener("submit", function (event) {
   if (!name) {
     nameError.textContent = "The name is required (empty field not allowed) ";
     addRedBorder(inputName);
-    return;
+    isValid = false;
+  } else {
+    isValid = true;
   }
 
   if (!emailRegex.test(email)) {
     emailError.textContent =
       "The email is required and must have a @ sign in it. ";
     addRedBorder(inputEmail);
-    return;
+    isValid = false;
+  } else {
+    isValid = true;
   }
 
   if (password.length < 8) {
     passwordError.textContent = "The password must have at least 8 characters.";
     addRedBorder(inputPassword);
-    return;
+    isValid = false;
+  } else {
+    isValid = true;
   }
-  successMessage.textContent = "Logged In successful 🙂";
+  if (isValid) successMessage.textContent = "Logged In successful 🙂";
 });
