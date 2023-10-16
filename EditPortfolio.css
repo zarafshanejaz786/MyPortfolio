@@ -367,3 +367,30 @@ footer {
 .experience-item p {
   margin: 5px 0;
 }
+/* ----------------------------------------------------------------------------- */
+
+.buttons {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+.deleteBtn {
+  margin-left: 5px;
+  background-color: rgb(192, 0, 0);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.editBtn {
+  margin-left: 5px;
+  background-color: #138496;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
