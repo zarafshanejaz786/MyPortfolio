@@ -1,54 +1,59 @@
-document.addEventListener("DOMContentLoaded", () => {
-  document
-    .getElementById("registrationForm")
-    .addEventListener("submit", async function (event) {
-      event.preventDefault();
+const registrationForm = document.getElementById("registrationForm");
+registrationForm.addEventListener("submit", function (event) {
+  event.preventDefault();
 
-      const inputName = document.getElementById("name");
-      const inputEmail = document.getElementById("email");
-      const inputPassword = document.getElementById("password");
+  const inputName = document.getElementById("name");
+  const inputEmail = document.getElementById("email");
+  const inputPassword = document.getElementById("password");
 
-      const nameError = document.getElementById("nameError");
-      const emailError = document.getElementById("emailError");
-      const passwordError = document.getElementById("passwordError");
-      const successMessage = document.getElementById("successMessage");
+  const nameError = document.getElementById("nameError");
+  const emailError = document.getElementById("emailError");
+  const passwordError = document.getElementById("passwordError");
+  const successMessage = document.getElementById("successMessage");
 
-      const name = inputName.value;
-      const email = inputEmail.value;
-      const password = inputPassword.value;
+  const name = inputName.value;
+  const email = inputEmail.value;
+  const password = inputPassword.value;
 
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var isNameValid = false;
+  var isEmailValid = false;
+  var isPasswordValid = false;
+  emailError.textContent = "";
+  nameError.textContent = "";
+  passwordError.textContent = "";
 
-      if (name && emailRegex.test(email) && password.length > 7) {
-        nameError.textContent = "";
-        emailError.textContent = "";
-        passwordError.textContent = "";
-        successMessage.textContent = "Logged In successful 🙂";
-        return;
-      }
+  inputName.style.border = "";
+  inputEmail.style.border = "";
+  inputPassword.style.border = "";
 
-      if (!name) {
-        nameError.textContent =
-          "The name is required (empty field not allowed) ";
-        return;
-      } else {
-        nameError.textContent = "";
-      }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-      if (!emailRegex.test(email)) {
-        emailError.textContent =
-          "The email is required and must have a @ sign in it. ";
-        return;
-      } else {
-        emailError.textContent = "";
-      }
+  function addRedBorder(element) {
+    element.style.border = "1px solid red";
+  }
 
-      if (!(password.length > 7)) {
-        passwordError.textContent =
-          "The password must have at least 8 characters.";
-        return;
-      } else {
-        passwordError.textContent = "";
-      }
-    });
+  if (!name) {
+    nameError.textContent = "The name is required (empty field not allowed) ";
+    addRedBorder(inputName);
+  } else {
+    isNameValid = true;
+  }
+
+  if (!emailRegex.test(email)) {
+    emailError.textContent =
+      "The email is required and must have a @ sign in it. ";
+    addRedBorder(inputEmail);
+  } else {
+    isEmailValid = true;
+  }
+
+  if (password.length < 8) {
+    passwordError.textContent = "The password must have at least 8 characters.";
+    addRedBorder(inputPassword);
+  } else {
+    isPasswordValid = true;
+  }
+
+  if (isNameValid && isEmailValid && isPasswordValid)
+    successMessage.textContent = "Logged In successful 🙂";
 });
