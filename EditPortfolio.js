@@ -2,7 +2,6 @@ const addExperienceBtn = document.getElementById("addExperienceBtn");
 const experienceForm = document.getElementById("experienceForm");
 const experienceList = document.getElementById("experienceList");
 const experienceEntryForm = document.getElementById("experienceEntryForm");
-const experienceEntry = document.createElement("li");
 const inputCompanyName = document.getElementById("companyName");
 const inputStartDate = document.getElementById("startDate");
 const inputEndDate = document.getElementById("endDate");
@@ -14,6 +13,19 @@ addExperienceBtn.addEventListener("click", () => {
 
 experienceEntryForm.addEventListener("submit", (event) => {
   event.preventDefault();
+
+  const companyName = inputCompanyName.value;
+  const startDate = inputStartDate.value;
+  const endDate = inputEndDate.value;
+  const description = inputDescription.value;
+
+  if (new Date(endDate) < new Date(startDate)) {
+    alert("End Date should be greater than or equal to Start Date");
+    return;
+  }
+
+  const experienceEntry = document.createElement("li");
+
   experienceEntry.className = "experience-item";
   experienceEntry.innerHTML = `
      
