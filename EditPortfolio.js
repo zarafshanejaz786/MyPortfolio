@@ -73,10 +73,7 @@ function loadExperiencesFromLocalStorage() {
     const experienceEntry = document.createElement("li");
     experienceEntry.className = "experience-item";
     experienceEntry.innerHTML = `
-      <div class="buttons">
-        <button class="editBtn">Edit</button>
-        <button class="deleteBtn">Delete</button>
-      </div>
+     
       <h3>${experience.companyName}</h3>
       <p>${experience.startDate} - ${experience.endDate}</p>
       <p>${experience.description}</p>
