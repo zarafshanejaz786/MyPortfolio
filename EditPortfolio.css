@@ -135,7 +135,7 @@
   padding: 20px;
   margin-left: 10px;
 }
-.border {
+.sectionBorder {
   border: 5px solid #ffffff;
   border-width: 2px;
   border-radius: 5px;
@@ -154,7 +154,7 @@
   color: #000000;
   margin-bottom: 10px;
 }
-.heading2 {
+.sectionHeading {
   font-family: "Francois One";
   font-size: 22px;
   color: #555;
@@ -162,7 +162,7 @@
   margin-bottom: 3px;
 }
 
-.paragraph {
+.sectionParagraph {
   color: #5d5151;
   margin-top: 5px;
   line-height: inherit;
