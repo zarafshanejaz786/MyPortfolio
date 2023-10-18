@@ -11,20 +11,19 @@ registrationForm.addEventListener("submit", function (event) {
   const passwordError = document.getElementById("passwordError");
   const successMessage = document.getElementById("successMessage");
 
-  const name = inputName.value;
-  const email = inputEmail.value;
-  const password = inputPassword.value;
+  const name = inputName.value.trim();
+  const email = inputEmail.value.trim();
+  const password = inputPassword.value.trim();
 
-  var isNameValid = false;
-  var isEmailValid = false;
-  var isPasswordValid = false;
-  emailError.textContent = "";
-  nameError.textContent = "";
-  passwordError.textContent = "";
+  let isValid = true;
 
   inputName.style.border = "";
   inputEmail.style.border = "";
   inputPassword.style.border = "";
+
+  emailError.textContent = "";
+  nameError.textContent = "";
+  passwordError.textContent = "";
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -35,25 +34,42 @@ registrationForm.addEventListener("submit", function (event) {
   if (!name) {
     nameError.textContent = "The name is required (empty field not allowed) ";
     addRedBorder(inputName);
-  } else {
-    isNameValid = true;
+    isValid = false;
   }
 
   if (!emailRegex.test(email)) {
-    emailError.textContent =
-      "The email is required and must have a @ sign in it. ";
+    if (!email) {
+      emailError.textContent = "Email is required (empty field not allowed)";
+    } else if (email.indexOf("@") === -1) {
+      emailError.textContent = "Please include '@' in the email address.";
+    } else if (email.indexOf(".") === -1) {
+      emailError.textContent =
+        "The '.' is missing or used on the wrong position.";
+    } else if (email.indexOf("@") > email.lastIndexOf(".")) {
+      emailError.textContent =
+        "Incomplete email: The '@' is placed after the '.'";
+    } else {
+      emailError.textContent = "Invalid email format.";
+    }
+
     addRedBorder(inputEmail);
-  } else {
-    isEmailValid = true;
+    isValid = false;
   }
 
   if (password.length < 8) {
-    passwordError.textContent = "The password must have at least 8 characters.";
+    passwordError.textContent =
+      "Password is required and must have at least 8 characters.";
     addRedBorder(inputPassword);
-  } else {
-    isPasswordValid = true;
+    isValid = false;
   }
 
-  if (isNameValid && isEmailValid && isPasswordValid)
+  if (isValid) {
     successMessage.textContent = "Logged In successful 🙂";
+    inputName.value = "";
+    inputEmail.value = "";
+    inputPassword.value = "";
+    inputName.style.border = "";
+    inputEmail.style.border = "";
+    inputPassword.style.border = "";
+  }
 });
