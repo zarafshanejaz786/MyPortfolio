@@ -199,3 +199,16 @@ h1 {
   font-size: 24px;
   margin-bottom: 20px;
 }
+.experience-item {
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 10px;
+  position: relative;
+  display: block;
+}
+.experience-item h3 {
+  margin: 0;
+}
+.experience-item p {
+  margin: 5px 0;
+}

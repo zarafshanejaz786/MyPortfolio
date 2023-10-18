@@ -38,6 +38,13 @@ experienceEntryForm.addEventListener("submit", (event) => {
   experienceList.appendChild(experienceEntry);
   clearFormInputs();
   experienceForm.style.display = "none";
+
+  updateLocalStorage({
+    companyName,
+    startDate,
+    endDate,
+    description
+  });
 });
 
 function clearFormInputs() {
@@ -45,4 +52,12 @@ function clearFormInputs() {
   inputStartDate.value = "";
   inputEndDate.value = "";
   inputDescription.value = "";
+}
+
+function updateLocalStorage(newExperience) {
+  const experiences = JSON.parse(localStorage.getItem("experiences")) || [];
+
+  experiences.push(newExperience);
+
+  localStorage.setItem("experiences", JSON.stringify(experiences));
 }
