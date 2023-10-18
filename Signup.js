@@ -65,24 +65,19 @@ registrationForm.addEventListener("submit", function (event) {
   }
 
   if (isValid) {
-    // If the form input is valid, simulate form submission and make an API request
     sendAPIRequest({ name, email, password });
   }
 });
 
-// Function to send an API request
 function sendAPIRequest(userData) {
-  // Mock API URL
-  const apiURL = "https://dummyjson.com/api/users"; // Replace with the actual API endpoint
+  const apiURL = "https://dummyjson.com/users/add";
 
-  // Create a new user object
   const newUser = {
     name: userData.name,
     email: userData.email,
     password: userData.password
   };
 
-  // Send a POST request to the API
   fetch(apiURL, {
     method: "POST",
     headers: {
@@ -92,17 +87,16 @@ function sendAPIRequest(userData) {
   })
     .then((response) => {
       if (response.ok) {
-        return response.json(); // Successful response, parse JSON
+        return response.json();
       } else {
-        throw new Error("API Error"); // Error response from the API
+        throw new Error("API Error");
       }
     })
     .then((data) => {
-      // Handle a successful API response
       successMessage.textContent = "Registered successfully 🙂";
     })
     .catch((error) => {
-      // Handle API error
       successMessage.textContent = "Registration failed. Please try again.";
+      successMessage.style.color = "red";
     });
 }
