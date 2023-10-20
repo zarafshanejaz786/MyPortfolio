@@ -1,6 +1,7 @@
 #body_main {
   font-family: Arial, sans-serif;
-  min-width: 100%;
+  min-width: 95%;
+  margin: 10px;
   line-height: 1.6;
   background-color: #c1dfe4;
 }
@@ -33,6 +34,11 @@
 .navbar a.selected {
   color: #17a2b8;
 }
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 .btnStyle {
   font-family: "Fjalla One";
   letter-spacing: 1px;
@@ -46,27 +52,23 @@
   transition: background-color 0.3s ease;
   margin-top: 10px;
 }
+#container {
+  width: 75%;
+  padding: 20px;
+  margin-left: 10px;
+}
 .sidebar {
   position: fixed;
   width: 20%;
-  margin-right: 20px;
   text-align: center;
   height: 100%;
   float: right;
-  margin-top: 40px;
-  right: 1px;
+  margin-top: 70px;
+  right: 22px;
   display: flex;
   flex-direction: column;
 }
-.borderSidebar {
-  width: 100%;
-  height: 88%;
-  margin-top: 30px;
-  border: 5px solid #ffffff;
-  border-width: 2px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
+
 .skillsContainer {
   margin-top: 50px;
   width: 100%;
@@ -118,11 +120,6 @@
   align-self: center;
 }
 
-#container {
-  width: 75%;
-  padding: 20px;
-  margin-left: 10px;
-}
 .border {
   border: 5px solid #ffffff;
   border-width: 2px;
@@ -139,15 +136,15 @@
   color: #000000;
   margin-bottom: 10px;
 }
-.heading2 {
+.sectionHeading {
   font-family: "Francois One";
   font-size: 22px;
-  color: #555;
+  color: #2f2d2d;
   margin-top: 10px;
   margin-bottom: 3px;
 }
 .paragraph {
-  color: #5d5151;
+  color: #605959;
   margin-top: 5px;
   line-height: inherit;
   justify-content: right;
@@ -158,12 +155,6 @@
 
 #ul {
   margin-left: 10px;
-}
-
-.navbar ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
 }
 
 .linkedIn {
@@ -211,4 +202,246 @@ h1 {
 }
 .experience-item p {
   margin: 5px 0;
+}
+
+@media screen and (min-width: 481px) and (max-width: 780px) {
+  .sidebar {
+    margin-top: 60px;
+    right: 12px;
+  }
+  #container {
+    width: 75%;
+    padding: 10px;
+    margin-left: 0px;
+  }
+  .title {
+    margin-top: 50px;
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+  .introduction_text {
+    font-size: 18px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .imgNameFont {
+    font-size: 18px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  .skillsHeading {
+    font-size: 18px;
+    margin-top: 15px;
+  }
+
+  .skills {
+    font-size: 18px;
+    margin-top: 6px;
+  }
+
+  .sectionHeading {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 3px;
+  }
+  .paragraph {
+    padding-right: 10px;
+    font-size: 14px;
+  }
+  .model-content {
+    left: 50%;
+    width: 80%;
+    margin-top: 40px;
+  }
+  li {
+    font-size: 14px;
+  }
+  .experience-item {
+    padding: 6px;
+    margin: 1px 1px;
+    position: relative;
+    display: block;
+  }
+  .experience-item h3 {
+    font-size: 16px;
+    margin: 0;
+  }
+  .experience-item p {
+    font-size: 16px;
+    margin: 0px 0;
+  }
+
+  .navbar {
+    height: 40px;
+    padding: 5px 0;
+  }
+
+  .navbar li {
+    margin: 0 8px;
+  }
+  .navbar a {
+    letter-spacing: 0.6px;
+    font-size: 14px;
+  }
+
+  .btnStyle {
+    letter-spacing: 0.6px;
+    padding: 3px 8px;
+    margin-top: 8px;
+  }
+}
+@media (max-width: 480px) {
+  .sidebar {
+    right: 10px;
+
+    position: relative;
+    width: 95%;
+    height: 25%;
+    background-color: #99d3db;
+    margin-top: 40px;
+    margin-bottom: 10px;
+  }
+  .infoContainer {
+    margin-left: 10px;
+    height: 100%;
+    margin-top: 5px;
+    width: 50%;
+    padding-top: 5px;
+  }
+  .imagecontainer {
+    padding-top: 10px;
+    position: absolute;
+    right: 10px;
+    height: 100%;
+    width: 30%;
+  }
+  .skillsContainer {
+    align-items: left;
+    columns: 2;
+    column-gap: 10px;
+    margin-left: 10px;
+    height: fit-content;
+    width: 100%;
+  }
+  #container {
+    width: 95%;
+    padding: 5px;
+    margin-left: 0px;
+  }
+  .avatar {
+    margin-top: 5px;
+    width: 50%;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    height: auto;
+  }
+  .title {
+    margin-top: 30px;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .introduction_text {
+    font-size: 14px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    left: 1px;
+  }
+  .imgNameFont {
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  .skillsHeading {
+    margin-inline-start: 10px;
+    text-align: start;
+    font-weight: bolder;
+    margin-top: 0px;
+    margin-bottom: 3px;
+    color: rgb(0, 0, 0);
+    letter-spacing: 2px;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+
+  .skills {
+    color: #5d5151;
+    font-size: 12px;
+    margin-top: 3px;
+    line-height: 10px;
+    text-align: left;
+  }
+
+  .sectionHeading {
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 3px;
+  }
+  .paragraph {
+    padding-right: 10px;
+    font-size: 12px;
+  }
+  .model-content {
+    left: 50%;
+    width: 80%;
+    margin-top: 40px;
+  }
+  li {
+    font-size: 12px;
+    padding-right: 6px;
+  }
+  .experience-item {
+    padding: 6px;
+    margin: 1px 1px;
+    position: relative;
+    display: block;
+  }
+  .experience-item h3 {
+    font-size: 12px;
+    margin: 0;
+  }
+  .experience-item p {
+    font-size: 12px;
+    margin: 0px 0;
+  }
+
+  .navbar {
+    height: 30px;
+    padding: 5px 0;
+  }
+
+  .navbar li {
+    margin: 0 4px;
+  }
+  .navbar a {
+    letter-spacing: 0.6px;
+    font-size: 12px;
+  }
+
+  .btnStyle {
+    letter-spacing: 0.6px;
+    padding: 3px 3px;
+    margin-top: 5px;
+  }
+
+  .linkedIn {
+    color: #5d5151;
+    margin-top: 5px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  footer {
+    height: fit-content;
+    color: #fff;
+    padding: 5px 0;
+    width: 100%;
+  }
+  .linkedIn a {
+    margin-left: 15px;
+    font-size: 12px;
+    text-decoration: none;
+    color: #ffffff;
+  }
 }
