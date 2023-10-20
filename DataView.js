@@ -1,4 +1,3 @@
-// TTask 7 mock fetch api call on Table
 document.addEventListener("DOMContentLoaded", () => {
   fetch("https://jsonplaceholder.typicode.com/posts")
     .then((response) => response.json())
