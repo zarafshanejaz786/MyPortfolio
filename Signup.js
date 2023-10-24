@@ -1,15 +1,15 @@
-const registrationForm = document.getElementById("registrationForm");
+const registrationForm = getElement("registrationForm");
 registrationForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  const inputName = document.getElementById("name");
-  const inputEmail = document.getElementById("email");
-  const inputPassword = document.getElementById("password");
+  const inputName = getElement("name");
+  const inputEmail = getElement("email");
+  const inputPassword = getElement("password");
 
-  const nameError = document.getElementById("nameError");
-  const emailError = document.getElementById("emailError");
-  const passwordError = document.getElementById("passwordError");
-  const successMessage = document.getElementById("successMessage");
+  const nameError = getElement("nameError");
+  const emailError = getElement("emailError");
+  const passwordError = getElement("passwordError");
+  const successMessage = getElement("successMessage");
 
   const name = inputName.value.trim();
   const email = inputEmail.value.trim();
@@ -24,6 +24,7 @@ registrationForm.addEventListener("submit", function (event) {
   emailError.textContent = "";
   nameError.textContent = "";
   passwordError.textContent = "";
+  successMessage.textContent = "";
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -32,7 +33,7 @@ registrationForm.addEventListener("submit", function (event) {
   }
 
   if (!name) {
-    nameError.textContent = "The name is required (empty field not allowed) ";
+    nameError.textContent = "The name is required (empty field not allowed)";
     addRedBorder(inputName);
     isValid = false;
   }
@@ -64,12 +65,41 @@ registrationForm.addEventListener("submit", function (event) {
   }
 
   if (isValid) {
-    successMessage.textContent = "Logged In successful 🙂";
-    inputName.value = "";
-    inputEmail.value = "";
-    inputPassword.value = "";
-    inputName.style.border = "";
-    inputEmail.style.border = "";
-    inputPassword.style.border = "";
+    sendAPIRequest({ name, email, password });
   }
 });
+function getElement(id) {
+  return document.getElementById(id);
+}
+function sendAPIRequest(userData) {
+  const apiURL = "https://dummyjson.com/users/add";
+
+  const newUser = {
+    name: userData.name,
+    email: userData.email,
+    password: userData.password
+  };
+
+  fetch(apiURL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(newUser)
+  })
+    .then((response) => {
+      if (response && response.ok) {
+        return response.json();
+      } else {
+        throw new Error("API Error");
+      }
+    })
+    .then((data) => {
+      successMessage.textContent = "Registered successfully 🙂";
+    })
+    .catch((error) => {
+      console.error("API call failed:", error.message);
+      successMessage.textContent = "Registration failed. Please try again.";
+      successMessage.style.color = "red";
+    });
+}
