@@ -39,19 +39,6 @@
   padding: 0;
 }
 
-.btnStyle {
-  font-family: "Fjalla One";
-  letter-spacing: 1px;
-  background-color: #17a2b8;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 15px;
-  margin: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 10px;
-}
 .sectionHeading {
   font-family: "Francois One";
   font-size: 22px;
