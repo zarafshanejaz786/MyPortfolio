@@ -88,7 +88,7 @@ function sendAPIRequest(userData) {
     body: JSON.stringify(newUser)
   })
     .then((response) => {
-      if (response.ok) {
+      if (response && response.ok) {
         return response.json();
       } else {
         throw new Error("API Error");
