@@ -1,15 +1,15 @@
-const registrationForm = document.getElementById("registrationForm");
+const registrationForm = getElement("registrationForm");
 registrationForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  const inputName = document.getElementById("name");
-  const inputEmail = document.getElementById("email");
-  const inputPassword = document.getElementById("password");
+  const inputName = getElement("name");
+  const inputEmail = getElement("email");
+  const inputPassword = getElement("password");
 
-  const nameError = document.getElementById("nameError");
-  const emailError = document.getElementById("emailError");
-  const passwordError = document.getElementById("passwordError");
-  const successMessage = document.getElementById("successMessage");
+  const nameError = getElement("nameError");
+  const emailError = getElement("emailError");
+  const passwordError = getElement("passwordError");
+  const successMessage = getElement("successMessage");
 
   const name = inputName.value.trim();
   const email = inputEmail.value.trim();
@@ -68,7 +68,9 @@ registrationForm.addEventListener("submit", function (event) {
     sendAPIRequest({ name, email, password });
   }
 });
-
+function getElement(id) {
+  return document.getElementById(id);
+}
 function sendAPIRequest(userData) {
   const apiURL = "https://dummyjson.com/users/add";
 
@@ -86,7 +88,7 @@ function sendAPIRequest(userData) {
     body: JSON.stringify(newUser)
   })
     .then((response) => {
-      if (response.ok) {
+      if (response && response.ok) {
         return response.json();
       } else {
         throw new Error("API Error");
@@ -96,6 +98,7 @@ function sendAPIRequest(userData) {
       successMessage.textContent = "Registered successfully 🙂";
     })
     .catch((error) => {
+      console.error("API call failed:", error.message);
       successMessage.textContent = "Registration failed. Please try again.";
       successMessage.style.color = "red";
     });

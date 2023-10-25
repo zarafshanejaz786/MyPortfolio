@@ -37,12 +37,9 @@ function updateLocalStorage(newExperience) {
   localStorage.setItem("experiences", JSON.stringify(experiences));
 }
 
-function removeExperienceFromLocalStorage(companyName) {
+function removeExperienceFromLocalStorage(index) {
   const experiences = JSON.parse(localStorage.getItem("experiences")) || [];
-  const index = experiences.findIndex(
-    (experience) => experience.companyName === companyName
-  );
-  if (index !== -1) {
+  if (index >= 0 && index < experiences.length) {
     experiences.splice(index, 1);
     localStorage.setItem("experiences", JSON.stringify(experiences));
   }
@@ -106,9 +103,9 @@ filterInput.addEventListener("input", function () {
 experienceList.addEventListener("click", function (event) {
   if (event.target.classList.contains("deleteBtn")) {
     const experienceEntry = event.target.parentElement.parentElement;
-    const companyName = experienceEntry.querySelector("h3").textContent;
+    const index = Array.from(experienceList.children).indexOf(experienceEntry);
     experienceEntry.remove();
-    removeExperienceFromLocalStorage(companyName);
+    removeExperienceFromLocalStorage(index);
   } else if (event.target.classList.contains("editBtn")) {
     const experienceEntry = event.target.parentElement.parentElement;
     const companyName = experienceEntry.querySelector("h3").textContent;
