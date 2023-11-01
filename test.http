@@ -1,0 +1,7 @@
+### GET AL EXPERIENCES
+
+
+GET http://localhost:5501/api/portfolio HTTP/1.1
+
+### GET Single EXPERIENCES
+GET http://localhost:5501/api/portfolio/experiences/653a380c6fb21df6076d4c41 HTTP/1.1
