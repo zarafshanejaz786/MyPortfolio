@@ -7,7 +7,6 @@ const inputCompanyName = document.getElementById("companyName");
 const inputStartDate = document.getElementById("startDate");
 const inputEndDate = document.getElementById("endDate");
 const inputDescription = document.getElementById("description");
-
 const apiUrl = "http://localhost:5501/api/portfolio/experiences";
 
 const getExperiences = async () => {
@@ -70,25 +69,6 @@ const addExperience = async (newExperience) => {
   }
 };
 
-// async function deleteExperience(experienceId) {
-//   try {
-//     const response = await fetch(
-//       `http://localhost:5501/api/portfolio/experiences/${experienceId}`,
-//       {
-//         method: "DELETE"
-//       }
-//     );
-
-//     if (response.ok) {
-//       // Handle successful deletion
-//       console.log("Experience deleted successfully");
-//     } else {
-//       console.error("Error deleting experience");
-//     }
-//   } catch (error) {
-//     console.error("Error deleting experience:", error);
-//   }
-// }
 async function deleteExperience(experienceId) {
   try {
     const response = await fetch(
@@ -110,30 +90,6 @@ async function deleteExperience(experienceId) {
   }
 }
 
-// const deleteExperience = async (experienceId) => {
-//   try {
-//     const response = await fetch(
-//       `http://localhost:5501/api/portfolio/experiences/delete?experienceId=${experienceId}`,
-
-//       // `http://localhost:5501/api/portfolio/experiences/delete/${experienceId}`,
-//       //`http://localhost:5501/api/portfolio/experiences/${experienceId}`,
-//       {
-//         method: "DELETE"
-//       }
-//     );
-
-//     if (response.ok) {
-//       return true;
-//     } else {
-//       alert("Error deleting experience");
-//       return false;
-//     }
-//   } catch (error) {
-//     console.error("Error deleting experience:", error);
-//     return false;
-//   }
-// };
-
 const updateExperience = async (updatedData, experienceId) => {
   try {
     const response = await fetch(
@@ -149,7 +105,6 @@ const updateExperience = async (updatedData, experienceId) => {
 
     if (response.ok) {
       const updatedExperience = await response.json();
-      // Handle the updated experience data as needed
       return updatedExperience;
     } else {
       console.error("Error updating experience");

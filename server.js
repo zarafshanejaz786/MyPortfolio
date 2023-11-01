@@ -4,7 +4,6 @@ const app = express();
 const port = process.env.PORT || 5501;
 const mongoose = require("mongoose");
 const About = require("./portfolio-backend/model/About");
-const bcrypt = require("bcrypt");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -93,7 +92,6 @@ app.put("/api/portfolio/experiences/:experienceId", async (req, res) => {
       return res.status(404).json({ error: "Experience not found" });
     }
 
-    // Update the experience data
     experience.set(updatedExperienceData);
     await aboutData.save();
 
@@ -107,10 +105,22 @@ app.put("/api/portfolio/experiences/:experienceId", async (req, res) => {
 app.delete("/api/portfolio/experiences/:id", async (req, res) => {
   try {
     const id = req.params.id;
+    const about = await About.findOne();
 
-    await About.findByIdAndDelete(id);
+    if (!about) {
+      return res.status(404).json({ error: "About data not found" });
+    }
 
-    res.status(200).send("Successfully deleted");
+    const experienceIndex = about.experiences.findIndex((exp) => exp._id == id);
+
+    if (experienceIndex === -1) {
+      return res.status(404).json({ error: "Experience not found" });
+    }
+
+    about.experiences.splice(experienceIndex, 1);
+    await about.save();
+
+    res.status(200).json({ message: "Successfully deleted" });
   } catch (error) {
     console.error("Error deleting experience:", error);
     res.status(500).json({ error: "Internal Server Error" });
