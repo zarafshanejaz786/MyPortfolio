@@ -1,8 +1,8 @@
+const EXPERIENCE_URL = "http://localhost:5501/api/portfolio/experiences";
+
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const response = await fetch(
-      "http://localhost:5501/api/portfolio/experiences"
-    );
+    const response = await fetch(EXPERIENCE_URL);
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);

@@ -7,11 +7,10 @@ const inputCompanyName = document.getElementById("companyName");
 const inputStartDate = document.getElementById("startDate");
 const inputEndDate = document.getElementById("endDate");
 const inputDescription = document.getElementById("description");
-const apiUrl = "http://localhost:5501/api/portfolio/experiences";
-
+const EXPERIENCE_URL = "http://localhost:5501/api/portfolio/experiences";
 const getExperiences = async () => {
   try {
-    const response = await fetch(apiUrl);
+    const response = await fetch(EXPERIENCE_URL);
     if (!response.ok) {
       throw new Error(`API request failed with status ${response.status}`);
     }
@@ -48,7 +47,7 @@ const clearFormInputs = () => {
 
 const addExperience = async (newExperience) => {
   try {
-    const response = await fetch(apiUrl, {
+    const response = await fetch(EXPERIENCE_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -71,12 +70,9 @@ const addExperience = async (newExperience) => {
 
 async function deleteExperience(experienceId) {
   try {
-    const response = await fetch(
-      `http://localhost:5501/api/portfolio/experiences/${experienceId}`,
-      {
-        method: "DELETE"
-      }
-    );
+    const response = await fetch(`${EXPERIENCE_URL}/${experienceId}`, {
+      method: "DELETE"
+    });
 
     if (response.ok) {
       return true;
@@ -92,16 +88,13 @@ async function deleteExperience(experienceId) {
 
 const updateExperience = async (updatedData, experienceId) => {
   try {
-    const response = await fetch(
-      `http://localhost:5501/api/portfolio/experiences/${experienceId}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(updatedData)
-      }
-    );
+    const response = await fetch(`${EXPERIENCE_URL}/${experienceId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(updatedData)
+    });
 
     if (response.ok) {
       const updatedExperience = await response.json();
