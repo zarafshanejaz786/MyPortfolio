@@ -7,22 +7,8 @@ const inputCompanyName = document.getElementById("companyName");
 const inputStartDate = document.getElementById("startDate");
 const inputEndDate = document.getElementById("endDate");
 const inputDescription = document.getElementById("description");
-const EXPERIENCE_URL = "http://localhost:5501/api/portfolio/experiences";
-const getExperiences = async () => {
-  try {
-    const response = await fetch(EXPERIENCE_URL);
-    if (!response.ok) {
-      throw new Error(`API request failed with status ${response.status}`);
-    }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching experiences:", error);
-    return [];
-  }
-};
 
-const createExperienceEntry = (experience) => {
+function createExperienceEntry(experience) {
   const experienceEntry = document.createElement("li");
   experienceEntry.className = "experience-item";
   experienceEntry.innerHTML = `
@@ -36,82 +22,43 @@ const createExperienceEntry = (experience) => {
     <p>${experience.description}</p>
   `;
   return experienceEntry;
-};
+}
 
-const clearFormInputs = () => {
+function clearFormInputs() {
   inputCompanyName.value = "";
   inputStartDate.value = "";
   inputEndDate.value = "";
   inputDescription.value = "";
-};
+}
 
-const addExperience = async (newExperience) => {
-  try {
-    const response = await fetch(EXPERIENCE_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(newExperience)
-    });
+function updateLocalStorage(newExperience) {
+  const experiences = JSON.parse(localStorage.getItem("experiences")) || [];
+  experiences.push(newExperience);
+  localStorage.setItem("experiences", JSON.stringify(experiences));
+}
 
-    if (response.ok) {
-      const addedExperience = await response.json();
-      return addedExperience;
-    } else {
-      alert("Error adding experience");
-      return null;
-    }
-  } catch (error) {
-    console.error("Error adding experience:", error);
-    return null;
-  }
-};
-
-async function deleteExperience(experienceId) {
-  try {
-    const response = await fetch(`${EXPERIENCE_URL}/${experienceId}`, {
-      method: "DELETE"
-    });
-
-    if (response.ok) {
-      return true;
-    } else {
-      alert("Error deleting experience");
-      return false;
-    }
-  } catch (error) {
-    console.error("Error deleting experience:", error);
-    return false;
+function removeExperienceFromLocalStorage(index) {
+  const experiences = JSON.parse(localStorage.getItem("experiences")) || [];
+  if (index >= 0 && index < experiences.length) {
+    experiences.splice(index, 1);
+    localStorage.setItem("experiences", JSON.stringify(experiences));
   }
 }
 
-const updateExperience = async (updatedData, experienceId) => {
-  try {
-    const response = await fetch(`${EXPERIENCE_URL}/${experienceId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(updatedData)
-    });
+function loadExperiencesFromLocalStorage() {
+  const experiences = JSON.parse(localStorage.getItem("experiences")) || [];
 
-    if (response.ok) {
-      const updatedExperience = await response.json();
-      return updatedExperience;
-    } else {
-      console.error("Error updating experience");
-    }
-  } catch (error) {
-    console.error("Error updating experience:", error);
-  }
-};
+  experiences.forEach((experience) => {
+    const experienceEntry = createExperienceEntry(experience);
+    experienceList.appendChild(experienceEntry);
+  });
+}
 
 addExperienceBtn.addEventListener("click", () => {
   experienceForm.style.display = "block";
 });
 
-experienceEntryForm.addEventListener("submit", async (event) => {
+experienceEntryForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const companyName = inputCompanyName.value;
@@ -131,20 +78,19 @@ experienceEntryForm.addEventListener("submit", async (event) => {
     description
   };
 
-  const addedExperience = await addExperience(newExperience);
-  if (addedExperience) {
-    const experienceEntry = createExperienceEntry(addedExperience);
-    experienceList.appendChild(experienceEntry);
-    clearFormInputs();
-    experienceForm.style.display = "none";
-  }
+  const experienceEntry = createExperienceEntry(newExperience);
+  experienceList.appendChild(experienceEntry);
+  clearFormInputs();
+  experienceForm.style.display = "none";
+
+  updateLocalStorage(newExperience);
 });
 
-filterInput.addEventListener("input", () => {
+filterInput.addEventListener("input", function () {
   const searchTerm = filterInput.value.toLowerCase();
   const experienceEntries = document.querySelectorAll(".experience-item");
 
-  experienceEntries.forEach((entry) => {
+  experienceEntries.forEach(function (entry) {
     const companyName = entry.querySelector("h3").textContent.toLowerCase();
     if (companyName.includes(searchTerm)) {
       entry.style.display = "block";
@@ -153,48 +99,34 @@ filterInput.addEventListener("input", () => {
     }
   });
 });
-experienceList.addEventListener("click", async (event) => {
-  const experiences = await getExperiences();
+
+experienceList.addEventListener("click", function (event) {
   if (event.target.classList.contains("deleteBtn")) {
     const experienceEntry = event.target.parentElement.parentElement;
-
-    const experienceId = experienceEntry.dataset.id;
-
-    if (await deleteExperience(experienceId)) {
-      experienceEntry.remove();
-    }
+    const index = Array.from(experienceList.children).indexOf(experienceEntry);
+    experienceEntry.remove();
+    removeExperienceFromLocalStorage(index);
   } else if (event.target.classList.contains("editBtn")) {
     const experienceEntry = event.target.parentElement.parentElement;
-    const experienceId = experienceEntry.dataset.id;
-
-    event.target.disabled = true;
-
+    const companyName = experienceEntry.querySelector("h3").textContent;
+    const experiences = JSON.parse(localStorage.getItem("experiences")) || [];
     const experience = experiences.find(
-      (experience) => experience._id === experienceId
+      (exp) => exp.companyName === companyName
     );
 
-    if (experience) {
-      const editForm = createEditForm(experience);
-      experienceEntry.replaceWith(editForm);
+    const editForm = createEditForm(experience);
+    experienceEntry.replaceWith(editForm);
 
-      event.target.disabled = false;
-
-      editForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const updatedExperience = getFormData(editForm, experienceId);
-
-        const updatedData = await updateExperience(
-          updatedExperience,
-          experienceId
-        );
-        if (updatedData) {
-          editForm.replaceWith(createExperienceEntry(updatedData));
-        }
-      });
-    }
+    editForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const updatedExperience = getFormData(editForm);
+      updateExperienceInLocalStorage(updatedExperience, companyName);
+      editForm.replaceWith(createExperienceEntry(updatedExperience));
+    });
   }
 });
-const createEditForm = (experience) => {
+
+function createEditForm(experience) {
   const form = document.createElement("form");
   form.className = "experience-item";
   form.innerHTML = `
@@ -205,24 +137,27 @@ const createEditForm = (experience) => {
     <button class="addButton" type="submit">Save</button>
     `;
   return form;
-};
-const getFormData = (form, experienceId) => {
+}
+
+function getFormData(form) {
   const updatedExperience = {
-    _id: experienceId,
     companyName: form.querySelector("#editCompanyName").value,
     startDate: form.querySelector("#editStartDate").value,
     endDate: form.querySelector("#editEndDate").value,
     description: form.querySelector("#editDescription").value
   };
   return updatedExperience;
-};
+}
 
-document.addEventListener("DOMContentLoaded", async () => {
-  const experiences = await getExperiences();
+function updateExperienceInLocalStorage(updatedExperience, companyName) {
+  const experiences = JSON.parse(localStorage.getItem("experiences")) || [];
+  const index = experiences.findIndex((exp) => exp.companyName === companyName);
+  if (index !== -1) {
+    experiences[index] = updatedExperience;
+    localStorage.setItem("experiences", JSON.stringify(experiences));
+  }
+}
 
-  experiences.forEach((experience) => {
-    const experienceEntry = createExperienceEntry(experience);
-    experienceEntry.dataset.id = experience._id;
-    experienceList.appendChild(experienceEntry);
-  });
+document.addEventListener("DOMContentLoaded", function () {
+  loadExperiencesFromLocalStorage();
 });
