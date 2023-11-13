@@ -1,7 +1,6 @@
 #body_main {
   font-family: Arial, sans-serif;
   min-width: 100%;
-  line-height: 1.6;
   background-color: #c1dfe4;
 }
 
@@ -33,10 +32,15 @@
 .navbar a.selected {
   color: #17a2b8;
 }
-.login {
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.formTitle {
   font-family: "Fjalla One";
   text-align: center;
-  margin-bottom: 0px;
+  margin-bottom: 30px;
   font-weight: bold;
   color: #054282;
 }
@@ -103,7 +107,7 @@
 }
 
 .errorMessage {
-  margin-top: 10px;
+  margin-top: 5px;
   text-align: left;
   color: #f13a3a;
 }
@@ -118,7 +122,7 @@
   transform: translate(-50%, -50%);
   background-color: #fff;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -162,17 +166,105 @@
   margin: 0 auto;
   border-radius: 50%;
 }
-@media (max-width: 780px) {
+
+@media screen and (min-width: 481px) and (max-width: 780px) {
   .model-content {
     left: 50%;
     width: 70%;
     margin-top: 40px;
   }
+
+  .navbar {
+    height: 40px;
+    padding: 5px 0;
+  }
+
+  .navbar li {
+    margin: 0 8px;
+  }
+  .navbar a {
+    letter-spacing: 0.6px;
+    font-size: 14px;
+  }
+
+  .formTitle {
+    margin-bottom: 30px;
+    font-size: 22px;
+  }
 }
-@media (max-width: 480px) {
+@media screen and (min-width: 280px) and (max-width: 481px) {
   .model-content {
     left: 50%;
-    width: 80%;
-    margin-top: 40px;
+    width: 70%;
+    margin-top: 0px;
+  }
+  .navbar {
+    height: 30px;
+    padding: 5px 0;
+  }
+
+  .navbar li {
+    margin: 0 4px;
+  }
+  .navbar a {
+    letter-spacing: 0.6px;
+    font-size: 12px;
+  }
+  .errorMessage {
+    margin-top: 3px;
+    text-align: left;
+    font-size: 10px;
+    color: #f13a3a;
+  }
+  .formTitle {
+    margin-bottom: 20px;
+    font-size: 12px;
+  }
+  .formContainer {
+    margin: 5px;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+
+  .formContainer label {
+    letter-spacing: 0.3px;
+    font-size: 10px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+  }
+
+  .formContainer h1 {
+    font-size: 12px;
+    margin-bottom: 0px;
+  }
+
+  .formContainer input[type="date"],
+  .formContainer input[type="text"],
+  .formContainer input[type="password"],
+  .formContainer textarea {
+    width: 100%;
+    padding: 3px;
+    margin: 3px 0;
+    font-size: 10px;
+    border-width: 1px;
+    margin-bottom: 2px;
+  }
+
+  .formContainer input:focus {
+    outline: none;
+    border-color: #00414b;
+  }
+  #errorInput :focus {
+    outline: none;
+    border-color: #d00707;
+  }
+  .formContainer button[type="submit"] {
+    width: 100%;
+    font-family: "Francois One", sans-serif;
+    margin-top: 10px;
+    padding: 3px;
+    font-size: 10px;
+    background-color: #17a2b8;
+    color: #fff;
   }
 }
