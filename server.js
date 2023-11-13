@@ -4,7 +4,6 @@ const app = express();
 const port = process.env.PORT || 5501;
 const mongoose = require("mongoose");
 const About = require("./portfolio-backend/model/About");
-const bcrypt = require("bcrypt");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
